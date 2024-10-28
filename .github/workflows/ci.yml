@@ -13,12 +13,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
       - name: Build Binary
-        run: make
+        run: go build -o dummy-server.bin ./cmd
       - name: Simple Test
         run: |
           ./dummy-server.bin &
           sleep 3
-          curl -s http://localhost:8443
+          curl -s http://localhost:8888
           kill $!
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
